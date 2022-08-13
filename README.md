@@ -47,8 +47,17 @@ Prevent requests without valid authentication headers.
 Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
 > !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.
 
-** eb create
+** steps
+- first tun npm run build to package the app for deployment
+
+*eb create*
  -Creates a new environment and deploys an application version to it.
+
+ *eb deploy*
+ - Deploys the application source bundle from the initialized project directory to the running application.
+
+ ## NB create new instance for this to work my link wount work after termination of eb instance
+ 
 
 
 
