@@ -57,8 +57,10 @@ Add your own domain name and have it point to the running services (try adding a
  - Deploys the application source bundle from the initialized project directory to the running application.
 
  ## NB create new instance for this to work my link wount work after termination of eb instance
- 
 
+ # Test url 
+  - https://wallpaperaccess.com/full/560420.jpg
+  - http://udacity-c2-basic-server-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://wallpaperaccess.com/full/560420.jpg
 
 
 
