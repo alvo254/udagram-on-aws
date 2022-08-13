@@ -20,23 +20,43 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // endpoint to filter an image from a public url.
   // IT SHOULD
   //    1. validate the image_url query
-  app.get("/filteredimage", (req, res)=> {
+  app.get('/filteredimage', ( req, res ) => { 
+  let { image_url } = req.query;
 
-    let { image_url } = req.query
+  if (!image_url) {
+    return res.status(400).send("Invalid request. image_url is required");
+  }
 
-    if(!image_url){
-      return res.status(400).send("Invalid request .image_url is requires")
-    }else {
-      filterImageFromURL(image_url).then( function (img_filtered_path){
-        res.sendFile(img_filtered_path, () => {       
-          deleteLocalFiles([img_filtered_path]);       
-        });   
-      }).catch(function(err){
-        res.status(400).send('The image can not be filtered - check the link submitted ');
-      });  
+  const filteredResult = filterImageFromURL(image_url)
+  .then((filteredResult) => {
+    // if(filteredResult)
+    // {
+    //   console.log("Success : " + filteredResult);
+    // }
+    res.sendFile(filteredResult, function(){
+      deleteLocalFiles([filteredResult]);
+    });
+  })
+  .catch(error => { console.log('Error caught', error.message); }); ;
 
-    }
-  });
+});
+  // app.get("/filteredimage", (req, res)=> {
+
+  //   let { image_url } = req.query
+
+  //   if(!image_url){
+  //     return res.status(400).send("Invalid request .image_url is requires")
+  //   }else {
+  //     filterImageFromURL(image_url).then( function (img_filtered_path){
+  //       res.sendFile(img_filtered_path, () => {       
+  //         deleteLocalFiles([img_filtered_path]);       
+  //       });   
+  //     }).catch(function(err){
+  //       res.status(400).send('The image can not be filtered - check the link submitted ');
+  //     });  
+
+  //   }
+  // });
 
     
 
