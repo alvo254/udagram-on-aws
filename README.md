@@ -63,4 +63,15 @@ Add your own domain name and have it point to the running services (try adding a
   - http://udacity-c2-basic-server-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://wallpaperaccess.com/full/560420.jpg
 
 
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/security-best-practices.html
+https://foghornconsulting.com/2016/08/20/6-things-to-know-about-aws-elastic-beanstalk/
+https://digitalcloud.training/certification-training/aws-solutions-architect-associate/compute/aws-elastic-beanstalk/
 
+## HTTP response status codes
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+
+Informational responses (100–199)
+Successful responses (200–299)
+Redirection messages (300–399)
+Client error responses (400–499)
+Server error responses (500–599)

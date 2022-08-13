@@ -1,4 +1,5 @@
-import express from 'express';
+import express, { Router, Request, Response } from 'express';
+// import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -20,8 +21,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // endpoint to filter an image from a public url.
   // IT SHOULD
   //    1. validate the image_url query
-  app.get('/filteredimage', ( req, res ) => { 
-  let { image_url } = req.query;
+  app.get('/filteredimage', ( req:Request, res:Response ) => { 
+  let { image_url } :{image_url:string} = req.query;
 
   if (!image_url) {
     return res.status(400).send("Invalid request. image_url is required");
