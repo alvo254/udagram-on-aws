@@ -20,32 +20,25 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // endpoint to filter an image from a public url.
   // IT SHOULD
   //    1. validate the image_url query
-  app.get("/filterdimage", (req, res)=> {
+  app.get("/filteredimage", (req, res)=> {
 
     let { image_url } = req.query
 
     if(!image_url){
       return res.status(400).send("Invalid request .image_url is requires")
+    }else {
+      filterImageFromURL(image_url).then( function (img_filtered_path){
+        res.sendFile(img_filtered_path, () => {       
+          deleteLocalFiles([img_filtered_path]);       
+        });   
+      }).catch(function(err){
+        res.status(400).send('The image can not be filtered - check the link submitted ');
+      });  
+
     }
+  });
 
-    const filterData = filterImageFromURL(image_url)
-    .then((filterResult) => {
-
-      if(filterResult)
-      {
-        console.log("Success. >> result: " + filterResult);
-      }
-      console.log("3. send the resulting file in the response");
-      //3. send the resulting file in the response
-      res.sendFile(filterResult, function(){
-        console.log("4. deletes any files on the server on finish of the response");
-        //4. deletes any files on the server on finish of the response
-        deleteLocalFiles([filterResult]);
-      });
-    })
-    .catch(error => { console.log('Error caught', error.message); }); ;
-
-  })
+    
 
   // QUERY PARAMATERS
   //    image_url: URL of a publicly accessible image
